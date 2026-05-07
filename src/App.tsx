@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -117,7 +116,7 @@ function App() {
 
       <main>
         <section className="hero section">
-          <div className="container hero-grid">
+          <div className="container hero-content">
             <div className="hero-copy">
               <h1>Buy and Sell Produce with Confidence</h1>
               <p>
@@ -144,22 +143,6 @@ function App() {
               </div>
               <p className="helper-text">You need an approved account to log in.</p>
             </div>
-            <Card className="visual-card">
-              <CardHeader>
-                <CardTitle>Farm2Go Workflow</CardTitle>
-                <CardDescription>
-                  Replace with app screenshots or product illustrations.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ol className="visual-list">
-                  <li>1. Register and get approved</li>
-                  <li>2. Publish or browse produce</li>
-                  <li>3. Confirm offer and quantity</li>
-                  <li>4. Deliver and track results</li>
-                </ol>
-              </CardContent>
-            </Card>
           </div>
         </section>
 

@@ -48,11 +48,8 @@
   gap: 0.75rem;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 2rem;
-  align-items: center;
+.hero-content {
+  display: block;
 }
 
 .hero-copy h1 {
@@ -76,17 +73,6 @@
 .helper-text {
   margin-top: 0.875rem;
   font-size: 0.875rem;
-}
-
-.visual-card {
-  min-height: 260px;
-}
-
-.visual-list {
-  margin: 0;
-  padding-left: 1.25rem;
-  display: grid;
-  gap: 0.75rem;
 }
 
 h2 {
@@ -156,10 +142,6 @@ h2 {
 @media (max-width: 980px) {
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
   }
 }
 
