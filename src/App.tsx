@@ -35,7 +35,7 @@ const roleCards = [
     iconClassName: "h-6 w-6 text-blue-600",
   },
   {
-    title: "Country Administrators",
+    title: "Country administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserCheck,
@@ -71,32 +71,32 @@ const workflowSteps = [
 ];
 
 const trustStats = [
-  "10+ Countries",
-  "30,000+ Farmers Registered",
-  "2,000+ Aggregators",
-  "2,000+ Metric Tons of Produce",
+  "10+ countries",
+  "30,000+ farmers registered",
+  "2,000+ aggregators",
+  "2,000+ metric tons of produce",
 ];
 
 const requestSteps = [
   {
-    title: "Step 1: Request Access",
+    title: "Step 1: Request access",
     subtitle: "Tell us who you are",
-    fields: ["I am a: Aggregator or Buyer"],
+    fields: ["I am a: Aggregator or buyer"],
   },
   {
-    title: "Step 2: Your Location",
+    title: "Step 2: Your location",
     subtitle: "Share where your organization operates",
-    fields: ["Country", "Region / District"],
+    fields: ["Country", "Region / district"],
   },
   {
-    title: "Step 3: Organisation Details",
+    title: "Step 3: Organisation details",
     subtitle: "Provide your organization profile",
-    fields: ["Organisation Name", "Organisation Type"],
+    fields: ["Organisation name", "Organisation type"],
   },
   {
-    title: "Step 4: Contact Details",
+    title: "Step 4: Contact details",
     subtitle: "Tell us how to reach you",
-    fields: ["Name and Surname", "Email Address", "Phone Number (optional)"],
+    fields: ["Name and surname", "Email address", "Phone number (optional)"],
   },
 ];
 
@@ -115,7 +115,7 @@ function App() {
           </div>
           <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
             <Button variant="outline" onClick={() => setIsRequestOpen(true)}>
-              Request Access
+              Request access
             </Button>
             <Button asChild>
               <a
@@ -138,7 +138,7 @@ function App() {
           <div className="relative mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <div>
               <h1 className="m-0 text-4xl leading-[1.15] font-bold text-white md:text-5xl">
-                Buy and Sell Produce with Confidence
+                Buy and sell produce with confidence
               </h1>
               <p className="mt-4 max-w-[56ch] text-white">
                 Farm2Go connects aggregators and buyers to trade produce, track
@@ -159,7 +159,7 @@ function App() {
                   size="lg"
                   onClick={() => setIsRequestOpen(true)}
                 >
-                  Request Access
+                  Request access
                 </Button>
               </div>
               <p className="mt-3.5 text-sm text-white/90">
@@ -172,7 +172,7 @@ function App() {
         <section className="py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
-              Who Is This For
+              Who is this for
             </h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {roleCards.map((role) => (
@@ -191,7 +191,7 @@ function App() {
         <section className="bg-neutral-50 py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
-              How Farm2Go Works
+              How Farm2Go works
             </h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
@@ -210,7 +210,7 @@ function App() {
         <section className="py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
-              Trusted Across Multiple Countries
+              Trusted across multiple countries
             </h2>
             <div className="flex flex-wrap gap-3">
               {trustStats.map((stat) => (
@@ -224,13 +224,13 @@ function App() {
 
         <section className="py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">Need Help?</h2>
+            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">Need help?</h2>
             <p className="mb-5 text-muted-foreground">
               Contact your local support team for assistance.
             </p>
             <div className="mb-4 flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
-              <Button variant="secondary">Contact Support</Button>
-              <Button variant="outline">WhatsApp Support</Button>
+              <Button variant="secondary">Contact support</Button>
+              <Button variant="outline">WhatsApp support</Button>
             </div>
             <Accordion type="single" collapsible>
               <AccordionItem value="faq-login">
@@ -257,7 +257,7 @@ function App() {
       <Dialog open={isRequestOpen} onOpenChange={setIsRequestOpen}>
         <DialogContent className="max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Request Access</DialogTitle>
+            <DialogTitle>Request access</DialogTitle>
             <DialogDescription>
               New to Farm2Go? Apply for access as an aggregator or a buyer.
             </DialogDescription>
@@ -274,7 +274,7 @@ function App() {
                 </ul>
               </div>
             ))}
-            <Button variant="outline">Submit Request</Button>
+            <Button variant="outline">Submit request</Button>
             <Alert variant="warning">
               <AlertTitle>Approval is required</AlertTitle>
               <AlertDescription>
