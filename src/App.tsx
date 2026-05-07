@@ -131,7 +131,7 @@ function App() {
 
   return (
     <div className="text-foreground">
-      <header className="sticky top-0 z-10 border-b border-border bg-background">
+      <header className="sticky top-0 z-10 bg-background shadow-md">
         <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 max-[720px]:w-[min(1120px,calc(100%-2rem))] max-[720px]:flex-col max-[720px]:items-stretch">
           <div>
             <p className="m-0 flex items-center gap-2 text-xl font-bold text-wfp-blue">
