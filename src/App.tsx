@@ -38,21 +38,21 @@ const roleCards = [
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Tractor,
-    iconClassName: "h-6 w-6 text-green-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-green-100 p-2.5 text-green-600",
   },
   {
     title: "Buyers",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
     icon: ShoppingCart,
-    iconClassName: "h-6 w-6 text-blue-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-blue-100 p-2.5 text-blue-600",
   },
   {
     title: "Country administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserCheck,
-    iconClassName: "h-6 w-6 text-purple-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-purple-100 p-2.5 text-purple-600",
   },
 ];
 
@@ -61,25 +61,25 @@ const workflowSteps = [
     title: "Register farmers and stock",
     description: "Aggregators record farmer details and available produce.",
     icon: Users,
-    iconClassName: "h-6 w-6 text-aqua-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-aqua-100 p-2.5 text-aqua-600",
   },
   {
     title: "Buyers view produce",
     description: "Buyers browse what is available in their selected areas.",
     icon: Store,
-    iconClassName: "h-6 w-6 text-orange-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-orange-100 p-2.5 text-orange-600",
   },
   {
     title: "Send offers",
     description: "Buyers and aggregators agree on price and quantity.",
     icon: Handshake,
-    iconClassName: "h-6 w-6 text-brown-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-brown-100 p-2.5 text-brown-600",
   },
   {
     title: "Complete exchange",
     description: "Produce is delivered and transactions are recorded.",
     icon: ClipboardList,
-    iconClassName: "h-6 w-6 text-red-600",
+    iconClassName: "h-12 w-12 rounded-lg bg-red-100 p-2.5 text-red-600",
   },
 ];
 
