@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -11,9 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Link } from "@/components/ui/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const roleCards = [
   {
@@ -83,6 +88,8 @@ const requestSteps = [
 ];
 
 function App() {
+  const [isRequestOpen, setIsRequestOpen] = useState(false);
+
   return (
     <div className="landing-page">
       <header className="landing-header">
@@ -92,8 +99,18 @@ function App() {
             <p className="brand-subtitle">Digital produce exchange platform</p>
           </div>
           <div className="header-actions">
-            <Button variant="outline">Request Access</Button>
-            <Button>Log in</Button>
+            <Button variant="outline" onClick={() => setIsRequestOpen(true)}>
+              Request Access
+            </Button>
+            <Button asChild>
+              <a
+                href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Log in
+              </a>
+            </Button>
           </div>
         </div>
       </header>
@@ -108,8 +125,20 @@ function App() {
                 stock, and improve market access.
               </p>
               <div className="hero-actions">
-                <Button size="lg">Log in</Button>
-                <Button variant="outline" size="lg">
+                <Button size="lg" asChild>
+                  <a
+                    href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Log in
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => setIsRequestOpen(true)}
+                >
                   Request Access
                 </Button>
               </div>
@@ -179,65 +208,6 @@ function App() {
           </div>
         </section>
 
-        <section className="section dual-section">
-          <div className="container dual-grid">
-            <Card>
-              <CardHeader>
-                <CardTitle>Login</CardTitle>
-                <CardDescription>For approved and registered users only.</CardDescription>
-              </CardHeader>
-              <CardContent className="form-content">
-                <div className="field-group">
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" placeholder="name@example.org" />
-                </div>
-                <div className="field-group">
-                  <Label htmlFor="password">Password</Label>
-                  <Input id="password" type="password" placeholder="Enter password" />
-                </div>
-                <Button>Login</Button>
-                <Link href="#">Forgot your password?</Link>
-                <Alert variant="info">
-                  <AlertTitle>Login access is restricted</AlertTitle>
-                  <AlertDescription>
-                    Only approved users can log in.
-                  </AlertDescription>
-                </Alert>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Request Access</CardTitle>
-                <CardDescription>
-                  New to Farm2Go? Apply for access as an aggregator or a buyer.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="request-content">
-                {requestSteps.map((step) => (
-                  <div key={step.title} className="request-step">
-                    <h3>{step.title}</h3>
-                    <p>{step.subtitle}</p>
-                    <ul>
-                      {step.fields.map((field) => (
-                        <li key={field}>{field}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                <Button variant="outline">Submit Request</Button>
-                <Alert variant="warning">
-                  <AlertTitle>Approval is required</AlertTitle>
-                  <AlertDescription>
-                    Submitting a request does not guarantee access. Applications
-                    are reviewed by the country administration team.
-                  </AlertDescription>
-                </Alert>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
         <section className="section">
           <div className="container support-block">
             <h2>Need Help?</h2>
@@ -267,6 +237,38 @@ function App() {
           </div>
         </section>
       </main>
+
+      <Dialog open={isRequestOpen} onOpenChange={setIsRequestOpen}>
+        <DialogContent className="dialog-content-scroll">
+          <DialogHeader>
+            <DialogTitle>Request Access</DialogTitle>
+            <DialogDescription>
+              New to Farm2Go? Apply for access as an aggregator or a buyer.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="request-content">
+            {requestSteps.map((step) => (
+              <div key={step.title} className="request-step">
+                <h3>{step.title}</h3>
+                <p>{step.subtitle}</p>
+                <ul>
+                  {step.fields.map((field) => (
+                    <li key={field}>{field}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <Button variant="outline">Submit Request</Button>
+            <Alert variant="warning">
+              <AlertTitle>Approval is required</AlertTitle>
+              <AlertDescription>
+                Submitting a request does not guarantee access. Applications are
+                reviewed by the country administration team.
+              </AlertDescription>
+            </Alert>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
