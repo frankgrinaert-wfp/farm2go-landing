@@ -2,6 +2,12 @@
   color: var(--foreground);
 }
 
+.landing-page h1,
+.landing-page h2,
+.landing-page h3 {
+  font-weight: 700;
+}
+
 .container {
   width: min(1120px, calc(100% - 3rem));
   margin: 0 auto;
