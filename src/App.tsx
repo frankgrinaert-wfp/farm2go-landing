@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { ClipboardList, Handshake, ShoppingCart, Store, Tractor, UserCheck, Users } from "lucide-react";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -24,16 +25,22 @@ const roleCards = [
     title: "Aggregators",
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
+    icon: Tractor,
+    iconClassName: "card-icon card-icon-green",
   },
   {
     title: "Buyers",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
+    icon: ShoppingCart,
+    iconClassName: "card-icon card-icon-blue",
   },
   {
     title: "Country Administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
+    icon: UserCheck,
+    iconClassName: "card-icon card-icon-purple",
   },
 ];
 
@@ -41,18 +48,26 @@ const workflowSteps = [
   {
     title: "Register farmers and stock",
     description: "Aggregators record farmer details and available produce.",
+    icon: Users,
+    iconClassName: "card-icon card-icon-aqua",
   },
   {
     title: "Buyers view produce",
     description: "Buyers browse what is available in their selected areas.",
+    icon: Store,
+    iconClassName: "card-icon card-icon-orange",
   },
   {
     title: "Send offers",
     description: "Buyers and aggregators agree on price and quantity.",
+    icon: Handshake,
+    iconClassName: "card-icon card-icon-brown",
   },
   {
     title: "Complete exchange",
     description: "Produce is delivered and transactions are recorded.",
+    icon: ClipboardList,
+    iconClassName: "card-icon card-icon-red",
   },
 ];
 
@@ -153,6 +168,7 @@ function App() {
               {roleCards.map((role) => (
                 <Card key={role.title}>
                   <CardHeader>
+                    <role.icon className={role.iconClassName} aria-hidden="true" />
                     <CardTitle>{role.title}</CardTitle>
                     <CardDescription>{role.description}</CardDescription>
                   </CardHeader>
@@ -169,6 +185,7 @@ function App() {
               {workflowSteps.map((step) => (
                 <Card key={step.title}>
                   <CardHeader>
+                    <step.icon className={step.iconClassName} aria-hidden="true" />
                     <CardTitle>{step.title}</CardTitle>
                     <CardDescription>{step.description}</CardDescription>
                   </CardHeader>

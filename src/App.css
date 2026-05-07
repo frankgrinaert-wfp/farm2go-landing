@@ -11,6 +11,29 @@
   padding: 4rem 0;
 }
 
+.hero {
+  position: relative;
+  min-height: 34rem;
+  display: flex;
+  align-items: center;
+  background-image:
+    linear-gradient(to right, rgb(0 0 0 / 62%), rgb(0 0 0 / 38%)),
+    url("https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero .hero-copy h1,
+.hero .hero-copy p,
+.hero .helper-text {
+  color: var(--white);
+}
+
+.hero .helper-text {
+  color: rgb(255 255 255 / 88%);
+}
+
 .muted-section {
   background-color: var(--neutral-50);
 }
@@ -86,6 +109,39 @@ h2 {
   gap: 1rem;
 }
 
+.card-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.card-icon-green {
+  color: var(--green-600);
+}
+
+.card-icon-blue {
+  color: var(--blue-600);
+}
+
+.card-icon-purple {
+  color: var(--purple-600);
+}
+
+.card-icon-aqua {
+  color: var(--aqua-600);
+}
+
+.card-icon-orange {
+  color: var(--orange-600);
+}
+
+.card-icon-brown {
+  color: var(--brown-600);
+}
+
+.card-icon-red {
+  color: var(--red-600);
+}
+
 .stats-list {
   display: flex;
   gap: 0.75rem;
@@ -152,6 +208,10 @@ h2 {
 
   .section {
     padding: 3rem 0;
+  }
+
+  .hero {
+    min-height: 28rem;
   }
 
   .header-content,
