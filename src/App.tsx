@@ -38,21 +38,21 @@ const roleCards = [
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Tractor,
-    iconClassName: "h-12 w-12 rounded-lg bg-green-100 p-2.5 text-green-600",
+    iconClassName: "size-12 rounded-lg bg-green-100 p-2.5 text-green-600",
   },
   {
     title: "Buyers",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
     icon: ShoppingCart,
-    iconClassName: "h-12 w-12 rounded-lg bg-blue-100 p-2.5 text-blue-600",
+    iconClassName: "size-12 rounded-lg bg-blue-100 p-2.5 text-blue-600",
   },
   {
     title: "Country administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserCheck,
-    iconClassName: "h-12 w-12 rounded-lg bg-purple-100 p-2.5 text-purple-600",
+    iconClassName: "size-12 rounded-lg bg-purple-100 p-2.5 text-purple-600",
   },
 ];
 
@@ -61,25 +61,25 @@ const workflowSteps = [
     title: "Register farmers and stock",
     description: "Aggregators record farmer details and available produce.",
     icon: Users,
-    iconClassName: "h-12 w-12 rounded-lg bg-aqua-100 p-2.5 text-aqua-600",
+    iconClassName: "size-12 rounded-lg bg-aqua-100 p-2.5 text-aqua-600",
   },
   {
     title: "Buyers view produce",
     description: "Buyers browse what is available in their selected areas.",
     icon: Store,
-    iconClassName: "h-12 w-12 rounded-lg bg-orange-100 p-2.5 text-orange-600",
+    iconClassName: "size-12 rounded-lg bg-orange-100 p-2.5 text-orange-600",
   },
   {
     title: "Send offers",
     description: "Buyers and aggregators agree on price and quantity.",
     icon: Handshake,
-    iconClassName: "h-12 w-12 rounded-lg bg-brown-100 p-2.5 text-brown-600",
+    iconClassName: "size-12 rounded-lg bg-brown-100 p-2.5 text-brown-600",
   },
   {
     title: "Complete exchange",
     description: "Produce is delivered and transactions are recorded.",
     icon: ClipboardList,
-    iconClassName: "h-12 w-12 rounded-lg bg-red-100 p-2.5 text-red-600",
+    iconClassName: "size-12 rounded-lg bg-red-100 p-2.5 text-red-600",
   },
 ];
 
@@ -113,6 +113,19 @@ const requestSteps = [
   },
 ];
 
+function MoneyBillWheatIcon() {
+  return (
+    <svg
+      viewBox="0 0 512 512"
+      aria-hidden="true"
+      className="size-6 text-wfp-blue"
+      fill="currentColor"
+    >
+      <path d="M176-16c44.2 0 80 35.8 80 80 0 8.8-7.2 16-16 16-44.2 0-80-35.8-80-80 0-8.8 7.2-16 16-16zM56 0l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24L56 48C42.7 48 32 37.3 32 24S42.7 0 56 0zM24 72l112 0c13.3 0 24 10.7 24 24s-10.7 24-24 24L24 120C10.7 120 0 109.3 0 96S10.7 72 24 72zm8 96c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0c-13.3 0-24-10.7-24-24zM272 0c0-8.8 7.2-16 16-16 44.2 0 80 35.8 80 80 0 8.8-7.2 16-16 16-44.2 0-80-35.8-80-80zM400-16c44.2 0 80 35.8 80 80 0 8.8-7.2 16-16 16-44.2 0-80-35.8-80-80 0-8.8 7.2-16 16-16zm80 144c0 44.2-35.8 80-80 80-8.8 0-16-7.2-16-16 0-44.2 35.8-80 80-80 8.8 0 16 7.2 16 16zM352 112c8.8 0 16 7.2 16 16 0 44.2-35.8 80-80 80-8.8 0-16-7.2-16-16 0-44.2 35.8-80 80-80zm-96 16c0 44.2-35.8 80-80 80-8.8 0-16-7.2-16-16 0-44.2 35.8-80 80-80 8.8 0 16 7.2 16 16zM0 304c0-26.5 21.5-48 48-48l416 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 304zM48 416l0 48 48 0c0-26.5-21.5-48-48-48zM96 304l-48 0 0 48c26.5 0 48-21.5 48-48zM464 416c-26.5 0-48 21.5-48 48l48 0 0-48zM416 304c0 26.5 21.5 48 48 48l0-48-48 0zm-96 80a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z" />
+    </svg>
+  );
+}
+
 function App() {
   const [isRequestOpen, setIsRequestOpen] = useState(false);
 
@@ -121,9 +134,9 @@ function App() {
       <header className="sticky top-0 z-10 border-b border-border bg-background">
         <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 max-[720px]:w-[min(1120px,calc(100%-2rem))] max-[720px]:flex-col max-[720px]:items-stretch">
           <div>
-            <p className="m-0 text-xl font-bold">Farm2Go</p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Digital produce exchange platform
+            <p className="m-0 flex items-center gap-2 text-xl font-bold text-wfp-blue">
+              <MoneyBillWheatIcon />
+              <span>Farm2Go</span>
             </p>
           </div>
           <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
@@ -148,7 +161,7 @@ function App() {
           <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
           <div className="relative mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <div>
-              <h1 className="m-0 text-4xl leading-[1.15] font-bold text-white md:text-5xl">
+              <h1 className="m-0 text-4xl font-bold text-white md:text-5xl">
                 Buy and sell produce with confidence
               </h1>
               <p className="mt-4 max-w-[56ch] text-lg text-white">
@@ -183,9 +196,7 @@ function App() {
 
         <section className="py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
-              Who Farm2Go is for
-            </h2>
+            <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {roleCards.map((role) => (
                 <Card key={role.title}>
@@ -207,9 +218,7 @@ function App() {
 
         <section className="bg-neutral-50 py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
-              How Farm2Go works
-            </h2>
+            <h2 className="mb-6 text-3xl font-bold">How Farm2Go works</h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
                 <Card key={step.title}>
@@ -231,7 +240,7 @@ function App() {
 
         <section className="py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
+            <h2 className="mb-6 text-3xl font-bold">
               Trusted across multiple countries
             </h2>
             <div className="flex flex-wrap gap-3">
@@ -250,9 +259,7 @@ function App() {
 
         <section className="py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
-              Need help?
-            </h2>
+            <h2 className="mb-6 text-3xl font-bold">Need help?</h2>
             <p className="mb-5 text-lg text-muted-foreground">
               Contact your local support team for assistance.
             </p>
