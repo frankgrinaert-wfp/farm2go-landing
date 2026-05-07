@@ -1,4 +1,3 @@
-import "./App.css";
 import { useState } from "react";
 import { ClipboardList, Handshake, ShoppingCart, Store, Tractor, UserCheck, Users } from "lucide-react";
 
@@ -26,21 +25,21 @@ const roleCards = [
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Tractor,
-    iconClassName: "card-icon card-icon-green",
+    iconClassName: "h-6 w-6 text-green-600",
   },
   {
     title: "Buyers",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
     icon: ShoppingCart,
-    iconClassName: "card-icon card-icon-blue",
+    iconClassName: "h-6 w-6 text-blue-600",
   },
   {
     title: "Country Administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserCheck,
-    iconClassName: "card-icon card-icon-purple",
+    iconClassName: "h-6 w-6 text-purple-600",
   },
 ];
 
@@ -49,25 +48,25 @@ const workflowSteps = [
     title: "Register farmers and stock",
     description: "Aggregators record farmer details and available produce.",
     icon: Users,
-    iconClassName: "card-icon card-icon-aqua",
+    iconClassName: "h-6 w-6 text-aqua-600",
   },
   {
     title: "Buyers view produce",
     description: "Buyers browse what is available in their selected areas.",
     icon: Store,
-    iconClassName: "card-icon card-icon-orange",
+    iconClassName: "h-6 w-6 text-orange-600",
   },
   {
     title: "Send offers",
     description: "Buyers and aggregators agree on price and quantity.",
     icon: Handshake,
-    iconClassName: "card-icon card-icon-brown",
+    iconClassName: "h-6 w-6 text-brown-600",
   },
   {
     title: "Complete exchange",
     description: "Produce is delivered and transactions are recorded.",
     icon: ClipboardList,
-    iconClassName: "card-icon card-icon-red",
+    iconClassName: "h-6 w-6 text-red-600",
   },
 ];
 
@@ -105,14 +104,16 @@ function App() {
   const [isRequestOpen, setIsRequestOpen] = useState(false);
 
   return (
-    <div className="landing-page">
-      <header className="landing-header">
-        <div className="container header-content">
+    <div className="text-foreground">
+      <header className="sticky top-0 z-10 border-b border-border bg-background">
+        <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 max-[720px]:w-[min(1120px,calc(100%-2rem))] max-[720px]:flex-col max-[720px]:items-stretch">
           <div>
-            <p className="brand">Farm2Go</p>
-            <p className="brand-subtitle">Digital produce exchange platform</p>
+            <p className="m-0 text-xl font-bold">Farm2Go</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Digital produce exchange platform
+            </p>
           </div>
-          <div className="header-actions">
+          <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
             <Button variant="outline" onClick={() => setIsRequestOpen(true)}>
               Request Access
             </Button>
@@ -130,15 +131,20 @@ function App() {
       </header>
 
       <main>
-        <section className="hero section">
-          <div className="container hero-content">
-            <div className="hero-copy">
-              <h1>Buy and Sell Produce with Confidence</h1>
-              <p>
+        <section
+          className="relative flex min-h-[34rem] items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-16 max-[720px]:min-h-[28rem] max-[720px]:py-12"
+        >
+          <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+          <div className="relative mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
+            <div>
+              <h1 className="m-0 text-4xl leading-[1.15] font-bold text-white md:text-5xl">
+                Buy and Sell Produce with Confidence
+              </h1>
+              <p className="mt-4 max-w-[56ch] text-white">
                 Farm2Go connects aggregators and buyers to trade produce, track
                 stock, and improve market access.
               </p>
-              <div className="hero-actions">
+              <div className="mt-6 flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
                 <Button size="lg" asChild>
                   <a
                     href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
@@ -156,15 +162,19 @@ function App() {
                   Request Access
                 </Button>
               </div>
-              <p className="helper-text">You need an approved account to log in.</p>
+              <p className="mt-3.5 text-sm text-white/90">
+                You need an approved account to log in.
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="section">
-          <div className="container">
-            <h2>Who Is This For</h2>
-            <div className="card-grid">
+        <section className="py-16 max-[720px]:py-12">
+          <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
+            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
+              Who Is This For
+            </h2>
+            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {roleCards.map((role) => (
                 <Card key={role.title}>
                   <CardHeader>
@@ -178,10 +188,12 @@ function App() {
           </div>
         </section>
 
-        <section className="section muted-section">
-          <div className="container">
-            <h2>How Farm2Go Works</h2>
-            <div className="card-grid">
+        <section className="bg-neutral-50 py-16 max-[720px]:py-12">
+          <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
+            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
+              How Farm2Go Works
+            </h2>
+            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
                 <Card key={step.title}>
                   <CardHeader>
@@ -195,12 +207,14 @@ function App() {
           </div>
         </section>
 
-        <section className="section">
-          <div className="container">
-            <h2>Trusted Across Multiple Countries</h2>
-            <div className="stats-list">
+        <section className="py-16 max-[720px]:py-12">
+          <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
+            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">
+              Trusted Across Multiple Countries
+            </h2>
+            <div className="flex flex-wrap gap-3">
               {trustStats.map((stat) => (
-                <Badge key={stat} className="stat-badge" variant="default">
+                <Badge key={stat} className="px-3.5 py-2 text-[0.95rem]" variant="default">
                   {stat}
                 </Badge>
               ))}
@@ -208,11 +222,13 @@ function App() {
           </div>
         </section>
 
-        <section className="section">
-          <div className="container support-block">
-            <h2>Need Help?</h2>
-            <p>Contact your local support team for assistance.</p>
-            <div className="support-actions">
+        <section className="py-16 max-[720px]:py-12">
+          <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
+            <h2 className="mb-6 text-[clamp(1.5rem,2.8vw,2rem)] font-bold">Need Help?</h2>
+            <p className="mb-5 text-muted-foreground">
+              Contact your local support team for assistance.
+            </p>
+            <div className="mb-4 flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
               <Button variant="secondary">Contact Support</Button>
               <Button variant="outline">WhatsApp Support</Button>
             </div>
@@ -239,19 +255,19 @@ function App() {
       </main>
 
       <Dialog open={isRequestOpen} onOpenChange={setIsRequestOpen}>
-        <DialogContent className="dialog-content-scroll">
+        <DialogContent className="max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Request Access</DialogTitle>
             <DialogDescription>
               New to Farm2Go? Apply for access as an aggregator or a buyer.
             </DialogDescription>
           </DialogHeader>
-          <div className="request-content">
+          <div className="grid gap-4">
             {requestSteps.map((step) => (
-              <div key={step.title} className="request-step">
-                <h3>{step.title}</h3>
-                <p>{step.subtitle}</p>
-                <ul>
+              <div key={step.title}>
+                <h3 className="m-0 text-base font-bold">{step.title}</h3>
+                <p className="mt-1 mb-2 text-muted-foreground">{step.subtitle}</p>
+                <ul className="m-0 list-disc pl-5">
                   {step.fields.map((field) => (
                     <li key={field}>{field}</li>
                   ))}
