@@ -5,11 +5,10 @@ import {
   MessagesSquare,
   LogIn,
   SearchCheck,
-  ShoppingCart,
   Store,
-  Tractor,
   UserStar,
   Users,
+  Info,
 } from "lucide-react";
 
 import {
@@ -18,22 +17,32 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const roleCards = [
   {
@@ -87,29 +96,6 @@ const trustStats = [
   "30,000+ farmers registered",
   "2,000+ aggregators",
   "2,000+ metric tons of produce",
-];
-
-const requestSteps = [
-  {
-    title: "Step 1: Request access",
-    subtitle: "Tell us who you are",
-    fields: ["I am a: Aggregator or buyer"],
-  },
-  {
-    title: "Step 2: Your location",
-    subtitle: "Share where your organization operates",
-    fields: ["Country", "Region / district"],
-  },
-  {
-    title: "Step 3: Organisation details",
-    subtitle: "Provide your organization profile",
-    fields: ["Organisation name", "Organisation type"],
-  },
-  {
-    title: "Step 4: Contact details",
-    subtitle: "Tell us how to reach you",
-    fields: ["Name and surname", "Email address", "Phone number (optional)"],
-  },
 ];
 
 function MoneyBillWheatIcon() {
@@ -290,41 +276,93 @@ function App() {
         </section>
       </main>
 
-      <Dialog open={isRequestOpen} onOpenChange={setIsRequestOpen}>
-        <DialogContent className="max-h-[85vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Request access</DialogTitle>
-            <DialogDescription className="text-base">
-              New to Farm2Go? Apply for access as an aggregator or a buyer.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4">
-            {requestSteps.map((step) => (
-              <div key={step.title}>
-                <h3 className="m-0 text-base font-bold">{step.title}</h3>
-                <p className="mt-1 mb-2 text-lg text-muted-foreground">
-                  {step.subtitle}
-                </p>
-                <ul className="m-0 list-disc pl-5 text-lg">
-                  {step.fields.map((field) => (
-                    <li key={field}>{field}</li>
-                  ))}
-                </ul>
+      <Sheet open={isRequestOpen} onOpenChange={setIsRequestOpen}>
+        <SheetContent className="w-full overflow-y-auto sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle>Request access</SheetTitle>
+            <SheetDescription>
+              Complete this form to request Farm2Go access.
+            </SheetDescription>
+          </SheetHeader>
+
+          <form className="grid gap-4 px-4 pb-6">
+            <div className="grid gap-2">
+              <Label htmlFor="country">Country</Label>
+              <Select name="country">
+                <SelectTrigger id="country" className="w-full">
+                  <SelectValue placeholder="Select your country" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="kenya">Kenya</SelectItem>
+                  <SelectItem value="uganda">Uganda</SelectItem>
+                  <SelectItem value="tanzania">Tanzania</SelectItem>
+                  <SelectItem value="rwanda">Rwanda</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="role">Role</Label>
+              <Select name="role">
+                <SelectTrigger id="role" className="w-full">
+                  <SelectValue placeholder="Select your role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="aggregator">Aggregator</SelectItem>
+                  <SelectItem value="buyer">Buyer</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="full-name">Name and surname</Label>
+              <Input id="full-name" name="fullName" placeholder="John Doe" />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="name@example.com"
+              />
+            </div>
+
+            <div className="rounded-md border p-3">
+              <div className="flex items-start gap-2">
+                <Checkbox id="robot-check" />
+                <Label htmlFor="robot-check" className="font-normal leading-5">
+                  I confirm I am not a robot.
+                </Label>
               </div>
-            ))}
-            <Button size="lg" variant="outline">
-              Submit request
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Checkbox id="privacy-consent" />
+              <Label
+                htmlFor="privacy-consent"
+                className="font-normal leading-5"
+              >
+                I agree that Farm2Go may process my data to review this request.
+              </Label>
+            </div>
+
+            <Button type="submit" size="lg">
+              Submit
             </Button>
-            <Alert variant="warning">
-              <AlertTitle>Approval is required</AlertTitle>
-              <AlertDescription className="text-base">
-                Submitting a request does not guarantee access. Applications are
-                reviewed by the country administration team.
+
+            <Alert variant="info">
+              <Info />
+              <AlertDescription>
+                Access is granted only after review by the country
+                administration team. This process may take time, and you will
+                need to wait for confirmation before logging in.
               </AlertDescription>
             </Alert>
-          </div>
-        </DialogContent>
-      </Dialog>
+          </form>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
