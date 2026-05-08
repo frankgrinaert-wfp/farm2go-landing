@@ -174,9 +174,9 @@ function App() {
                   Request access
                 </Button>
               </div>
-              <p className="text-sm text-white/90">
+              {/* <p className="text-sm text-white/90">
                 You need an approved account to log in.
-              </p>
+              </p> */}
             </div>
           </div>
         </section>
@@ -277,7 +277,7 @@ function App() {
       </main>
 
       <Sheet open={isRequestOpen} onOpenChange={setIsRequestOpen}>
-        <SheetContent className="w-full overflow-y-auto sm:max-w-md">
+        <SheetContent className="w-full overflow-y-auto sm:max-w-lg">
           <SheetHeader>
             <SheetTitle>Request access</SheetTitle>
             <SheetDescription>
@@ -285,7 +285,15 @@ function App() {
             </SheetDescription>
           </SheetHeader>
 
-          <form className="grid gap-4 px-4 pb-6">
+          <form className="grid gap-6 px-4 pb-6">
+            <Alert variant="info">
+              <Info />
+              <AlertDescription>
+                Access is granted only after review by the country
+                administration team. This process may take time, and you will
+                need to wait for confirmation before logging in.
+              </AlertDescription>
+            </Alert>
             <div className="grid gap-2">
               <Label htmlFor="country">Country</Label>
               <Select name="country">
@@ -344,22 +352,13 @@ function App() {
                 htmlFor="privacy-consent"
                 className="font-normal leading-5"
               >
-                I agree that Farm2Go may process my data to review this request.
+                I agree that Farm2Go may process my data to review this request
               </Label>
             </div>
 
             <Button type="submit" size="lg">
               Submit
             </Button>
-
-            <Alert variant="info">
-              <Info />
-              <AlertDescription>
-                Access is granted only after review by the country
-                administration team. This process may take time, and you will
-                need to wait for confirmation before logging in.
-              </AlertDescription>
-            </Alert>
           </form>
         </SheetContent>
       </Sheet>
