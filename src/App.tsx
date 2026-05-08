@@ -143,14 +143,14 @@ function App() {
       </header>
 
       <main>
-        <section className="relative flex min-h-[34rem] items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-16 max-[720px]:min-h-[28rem] max-[720px]:py-12">
-          <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+        <section className="relative flex min-h-120 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
+          <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
           <div className="relative mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <div className="flex flex-col gap-8">
-              <h1 className="m-0 text-4xl font-bold text-white md:text-5xl">
+            <div className="flex flex-col gap-8 max-w-xl">
+              <h1 className="text-4xl font-bold text-white md:text-5xl">
                 Buy and sell produce with confidence
               </h1>
-              <p className="max-w-[56ch] text-lg text-white">
+              <p className="text-lg text-white">
                 Farm2Go connects aggregators and buyers to trade produce, track
                 stock, and improve market access.
               </p>
@@ -181,7 +181,7 @@ function App() {
           </div>
         </section>
 
-        <section className="py-16 max-[720px]:py-12">
+        <section className="py-24 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
@@ -203,7 +203,7 @@ function App() {
           </div>
         </section>
 
-        <section className="bg-neutral-50 py-16 max-[720px]:py-12">
+        <section className="bg-neutral-50 py-24 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-3xl font-bold">How Farm2Go works</h2>
             <div className="grid grid-cols-4 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
@@ -223,7 +223,7 @@ function App() {
           </div>
         </section>
 
-        <section className="py-16 max-[720px]:py-12">
+        <section className="py-24 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-3xl font-bold">
               Trusted across multiple countries
@@ -238,7 +238,7 @@ function App() {
           </div>
         </section>
 
-        <section className="py-16 max-[720px]:py-12">
+        <section className="py-24 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-3xl font-bold">Need help?</h2>
             <p className="mb-5 text-lg text-muted-foreground">
