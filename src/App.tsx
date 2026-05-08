@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  ArrowRightLeft,
+  ArrowLeftRight,
   ClipboardList,
   MessagesSquare,
   LogIn,
@@ -87,7 +87,7 @@ const workflowSteps = [
   {
     title: "Complete exchange",
     description: "Produce is delivered and transactions are recorded.",
-    icon: ArrowRightLeft,
+    icon: ArrowLeftRight,
   },
 ];
 
