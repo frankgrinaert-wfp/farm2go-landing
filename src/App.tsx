@@ -135,9 +135,9 @@ function App() {
                 Log in
               </a>
             </Button>
-            <Button variant="outline" onClick={() => setIsRequestOpen(true)}>
+            {/*<Button variant="outline" onClick={() => setIsRequestOpen(true)}>
               Request access
-            </Button>
+            </Button>*/}
           </div>
         </div>
       </header>
@@ -165,14 +165,14 @@ function App() {
                     Log in
                   </a>
                 </Button>
-                <Button
+                {/*<Button
                   size="lg"
                   variant="outline"
                   className="text-base"
                   onClick={() => setIsRequestOpen(true)}
                 >
                   Request access
-                </Button>
+                </Button>*/}
               </div>
               {/* <p className="text-sm text-white/90">
                 You need an approved account to log in.
