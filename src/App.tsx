@@ -121,7 +121,7 @@ function App() {
           <div>
             <p className="m-0 flex items-center gap-2 text-xl font-bold text-wfp-blue">
               <Farm2GoIcon />
-              <span className="max-[480px]:hidden">Farm2Go</span>
+              Farm2Go
             </p>
           </div>
           <div className="flex gap-3">
