@@ -50,7 +50,7 @@ const roleCards = [
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Users,
-    iconClassName: "bg-green-100 text-green-600",
+    iconClassName: "bg-orange-100 text-orange-600",
   },
   {
     title: "Buyers",
@@ -64,7 +64,7 @@ const roleCards = [
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserStar,
-    iconClassName: "bg-purple-100 text-purple-600",
+    iconClassName: "bg-green-100 text-green-600",
   },
 ];
 
