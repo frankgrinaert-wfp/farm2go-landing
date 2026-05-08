@@ -1,11 +1,14 @@
 import { useState } from "react";
 import {
+  ArrowRightLeft,
   ClipboardList,
-  Handshake,
+  MessagesSquare,
+  LogIn,
+  SearchCheck,
   ShoppingCart,
   Store,
   Tractor,
-  UserCheck,
+  UserStar,
   Users,
 } from "lucide-react";
 
@@ -37,22 +40,22 @@ const roleCards = [
     title: "Aggregators",
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
-    icon: Tractor,
-    iconClassName: "size-12 rounded-lg bg-green-100 p-2.5 text-green-600",
+    icon: Users,
+    iconClassName: "bg-green-100 text-green-600",
   },
   {
     title: "Buyers",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
-    icon: ShoppingCart,
-    iconClassName: "size-12 rounded-lg bg-blue-100 p-2.5 text-blue-600",
+    icon: Store,
+    iconClassName: "bg-blue-100 text-blue-600",
   },
   {
     title: "Country administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
-    icon: UserCheck,
-    iconClassName: "size-12 rounded-lg bg-purple-100 p-2.5 text-purple-600",
+    icon: UserStar,
+    iconClassName: "bg-purple-100 text-purple-600",
   },
 ];
 
@@ -60,26 +63,22 @@ const workflowSteps = [
   {
     title: "Register farmers and stock",
     description: "Aggregators record farmer details and available produce.",
-    icon: Users,
-    iconClassName: "size-12 rounded-lg bg-aqua-100 p-2.5 text-aqua-600",
+    icon: ClipboardList,
   },
   {
     title: "Buyers view produce",
     description: "Buyers browse what is available in their selected areas.",
-    icon: Store,
-    iconClassName: "size-12 rounded-lg bg-orange-100 p-2.5 text-orange-600",
+    icon: SearchCheck,
   },
   {
     title: "Send offers",
     description: "Buyers and aggregators agree on price and quantity.",
-    icon: Handshake,
-    iconClassName: "size-12 rounded-lg bg-brown-100 p-2.5 text-brown-600",
+    icon: MessagesSquare,
   },
   {
     title: "Complete exchange",
     description: "Produce is delivered and transactions are recorded.",
-    icon: ClipboardList,
-    iconClassName: "size-12 rounded-lg bg-red-100 p-2.5 text-red-600",
+    icon: ArrowRightLeft,
   },
 ];
 
@@ -132,25 +131,26 @@ function App() {
   return (
     <div className="text-foreground">
       <header className="sticky top-0 z-10 bg-background shadow-md">
-        <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 max-[720px]:w-[min(1120px,calc(100%-2rem))] max-[720px]:flex-col max-[720px]:items-stretch">
+        <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 max-[720px]:w-[min(1120px,calc(100%-2rem))]">
           <div>
             <p className="m-0 flex items-center gap-2 text-xl font-bold text-wfp-blue">
               <MoneyBillWheatIcon />
-              <span>Farm2Go</span>
+              <span className="max-[480px]:hidden">Farm2Go</span>
             </p>
           </div>
-          <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
-            <Button variant="outline" onClick={() => setIsRequestOpen(true)}>
-              Request access
-            </Button>
+          <div className="flex gap-3">
             <Button asChild>
               <a
                 href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <LogIn aria-hidden="true" />
                 Log in
               </a>
+            </Button>
+            <Button variant="outline" onClick={() => setIsRequestOpen(true)}>
+              Request access
             </Button>
           </div>
         </div>
@@ -160,21 +160,22 @@ function App() {
         <section className="relative flex min-h-[34rem] items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-16 max-[720px]:min-h-[28rem] max-[720px]:py-12">
           <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
           <div className="relative mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <div>
+            <div className="flex flex-col gap-8">
               <h1 className="m-0 text-4xl font-bold text-white md:text-5xl">
                 Buy and sell produce with confidence
               </h1>
-              <p className="mt-4 max-w-[56ch] text-lg text-white">
+              <p className="max-w-[56ch] text-lg text-white">
                 Farm2Go connects aggregators and buyers to trade produce, track
                 stock, and improve market access.
               </p>
-              <div className="mt-6 flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
+              <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
                 <Button size="lg" className="text-base" asChild>
                   <a
                     href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <LogIn aria-hidden="true" />
                     Log in
                   </a>
                 </Button>
@@ -187,7 +188,7 @@ function App() {
                   Request access
                 </Button>
               </div>
-              <p className="mt-3.5 text-sm text-white/90">
+              <p className="text-sm text-white/90">
                 You need an approved account to log in.
               </p>
             </div>
@@ -202,10 +203,10 @@ function App() {
                 <Card key={role.title}>
                   <CardHeader>
                     <role.icon
-                      className={role.iconClassName}
+                      className={`size-14 rounded-lg p-3 mb-2 ${role.iconClassName}`}
                       aria-hidden="true"
                     />
-                    <CardTitle className="text-lg">{role.title}</CardTitle>
+                    <CardTitle className="text-xl">{role.title}</CardTitle>
                     <CardDescription className="text-base">
                       {role.description}
                     </CardDescription>
@@ -219,18 +220,16 @@ function App() {
         <section className="bg-neutral-50 py-16 max-[720px]:py-12">
           <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
             <h2 className="mb-6 text-3xl font-bold">How Farm2Go works</h2>
-            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
+            <div className="grid grid-cols-4 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
                 <Card key={step.title}>
                   <CardHeader>
                     <step.icon
-                      className={step.iconClassName}
+                      className={`size-10 rounded-lg p-2 text-blue-600 bg-blue-100 mb-1`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-lg">{step.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {step.description}
-                    </CardDescription>
+                    <CardDescription>{step.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
@@ -245,11 +244,7 @@ function App() {
             </h2>
             <div className="flex flex-wrap gap-3">
               {trustStats.map((stat) => (
-                <Badge
-                  key={stat}
-                  className="px-3.5 py-2 text-[1.05rem]"
-                  variant="default"
-                >
+                <Badge key={stat} className="px-3.5 py-2 text-base">
                   {stat}
                 </Badge>
               ))}
