@@ -174,9 +174,6 @@ function App() {
                   Request access
                 </Button>*/}
               </div>
-              {/* <p className="text-sm text-white/90">
-                You need an approved account to log in.
-              </p> */}
             </div>
           </div>
         </section>
