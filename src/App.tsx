@@ -155,13 +155,13 @@ function App() {
                 stock, and improve market access.
               </p>
               <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
-                <Button size="lg" className="text-base" asChild>
+                <Button size="lg" className="text-base h-12 px-5!" asChild>
                   <a
                     href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <LogIn aria-hidden="true" />
+                    <LogIn className="size-5" aria-hidden="true" />
                     Log in
                   </a>
                 </Button>
@@ -232,43 +232,6 @@ function App() {
                 </Badge>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="py-24 max-[720px]:py-12">
-          <div className="mx-auto w-[min(1120px,calc(100%-3rem))] max-[720px]:w-[min(1120px,calc(100%-2rem))]">
-            <h2 className="mb-6 text-3xl font-bold">Need help?</h2>
-            <p className="mb-5 text-lg text-muted-foreground">
-              Contact your local support team for assistance.
-            </p>
-            <div className="mb-4 flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
-              <Button size="lg" variant="secondary" className="text-base">
-                Contact support
-              </Button>
-              <Button size="lg" variant="outline" className="text-base">
-                WhatsApp support
-              </Button>
-            </div>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="faq-login">
-                <AccordionTrigger className="text-base">
-                  Can I log in if I submitted a request today?
-                </AccordionTrigger>
-                <AccordionContent className="text-base">
-                  No. You can log in only after your application is reviewed and
-                  approved.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="faq-details">
-                <AccordionTrigger className="text-base">
-                  What details are required to apply?
-                </AccordionTrigger>
-                <AccordionContent className="text-base">
-                  Country, admin areas, organisation name and type,
-                  representative name and surname, and email address.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
           </div>
         </section>
       </main>
