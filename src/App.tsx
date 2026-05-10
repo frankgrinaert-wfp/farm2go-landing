@@ -236,6 +236,24 @@ function App() {
         </section>
       </main>
 
+      <footer className="bg-wfp-navy p-10">
+        <div className="mx-auto flex w-full max-w-6xl items-center">
+          <a
+            href="https://www.wfp.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <img
+              src="/logos/white/wfp-logo-en.svg"
+              alt="World Food Programme"
+              className="h-12 w-auto"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </footer>
+
       <Sheet open={isRequestOpen} onOpenChange={setIsRequestOpen}>
         <SheetContent className="w-full overflow-y-auto sm:max-w-lg">
           <SheetHeader>
