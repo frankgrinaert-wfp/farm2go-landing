@@ -117,7 +117,7 @@ function App() {
   return (
     <div className="text-foreground">
       <header className="sticky top-0 z-10 bg-background shadow-md px-10">
-        <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 w-full max-w-7xl">
+        <div className="mx-auto flex w-[min(1120px,calc(100%-3rem))] items-center justify-between gap-4 py-4 w-full max-w-6xl">
           <div>
             <p className="m-0 flex items-center gap-2 text-xl font-bold text-wfp-blue">
               <Farm2GoIcon />
@@ -145,7 +145,7 @@ function App() {
       <main>
         <section className="px-10 relative flex min-h-120 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
           <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-          <div className="relative mx-auto w-full max-w-7xl">
+          <div className="relative mx-auto w-full max-w-6xl">
             <div className="flex flex-col gap-8 max-w-xl">
               <h1 className="text-4xl font-bold text-white md:text-5xl">
                 Buy and sell produce with confidence
@@ -179,7 +179,7 @@ function App() {
         </section>
 
         <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-7xl">
+          <div className="mx-auto w-full max-w-6xl">
             <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {roleCards.map((role) => (
@@ -201,7 +201,7 @@ function App() {
         </section>
 
         <section className="px-10 py-24 bg-muted">
-          <div className="mx-auto w-full max-w-7xl">
+          <div className="mx-auto w-full max-w-6xl">
             <h2 className="mb-6 text-3xl font-bold">How Farm2Go works</h2>
             <div className="grid grid-cols-4 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
@@ -221,7 +221,7 @@ function App() {
         </section>
 
         <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-7xl">
+          <div className="mx-auto w-full max-w-6xl">
             <h2 className="mb-6 text-3xl font-bold">
               Trusted across multiple countries
             </h2>
