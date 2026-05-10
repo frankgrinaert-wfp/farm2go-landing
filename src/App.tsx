@@ -4,7 +4,7 @@ import {
   ClipboardList,
   MessagesSquare,
   LogIn,
-  SearchCheck,
+  PackageSearch,
   Store,
   UserStar,
   Users,
@@ -77,7 +77,7 @@ const workflowSteps = [
   {
     title: "Buyers view produce",
     description: "Buyers browse what is available in their selected areas.",
-    icon: SearchCheck,
+    icon: PackageSearch,
   },
   {
     title: "Send offers",
