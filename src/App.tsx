@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeftRight,
-  ClipboardList,
   MessagesSquare,
   LogIn,
   PackageSearch,
@@ -10,7 +9,6 @@ import {
   UserStar,
   Users,
   Info,
-  IdCard,
   LayoutList,
   SearchCheck,
 } from "lucide-react";
@@ -52,14 +50,26 @@ type PersonaCta =
     }
   | { kind: "login"; href: string; label: string };
 
-/** Tailwind icon tint: soft background + saturated icon. Add keys here when you need new colors. */
-const PERSONA_ICON_COLOR_CLASSES = {
-  orange: "bg-orange-100 text-orange-600",
-  blue: "bg-blue-100 text-blue-600",
-  green: "bg-green-100 text-green-600",
-} as const;
+/**
+ * Palette names that have `--{name}-100` and `--{name}-600` in `src/index.css` (:root).
+ * Icon tint always uses those two steps for background and foreground.
+ */
+type PersonaIconTintColor =
+  | "blue"
+  | "aqua"
+  | "green"
+  | "ivory"
+  | "brown"
+  | "orange"
+  | "red"
+  | "purple";
 
-type PersonaIconColor = keyof typeof PERSONA_ICON_COLOR_CLASSES;
+function personaIconTintStyle(color: PersonaIconTintColor): CSSProperties {
+  return {
+    backgroundColor: `var(--${color}-100)`,
+    color: `var(--${color}-600)`,
+  };
+}
 
 type PersonaCard = {
   id: string;
@@ -67,7 +77,7 @@ type PersonaCard = {
   platform: string;
   description: string;
   icon: LucideIcon;
-  iconColor: PersonaIconColor;
+  iconColor: PersonaIconTintColor;
   cta: PersonaCta;
 };
 
@@ -94,7 +104,7 @@ const personaCards: PersonaCard[] = [
     description:
       "Traders, local retailers, schools and other institutions who want to buy produce from smallholder farmers.",
     icon: Store,
-    iconColor: "blue",
+    iconColor: "green",
     cta: {
       kind: "login",
       href: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
@@ -108,7 +118,7 @@ const personaCards: PersonaCard[] = [
     description:
       "Implementation partners who support adoption, manage platform access, view reports and create agro-advisory content.",
     icon: UserStar,
-    iconColor: "green",
+    iconColor: "blue",
     cta: {
       kind: "login",
       href: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
@@ -265,7 +275,8 @@ function App() {
                 <Card key={persona.id} className="shadow-none">
                   <CardHeader className="flex items-center gap-5">
                     <persona.icon
-                      className={`size-13 rounded-lg p-2.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
+                      className="size-13 rounded-lg p-2.5"
+                      style={personaIconTintStyle(persona.iconColor)}
                       aria-hidden="true"
                     />
                     <div className="flex flex-col gap-2">
