@@ -10,6 +10,9 @@ import {
   UserStar,
   Users,
   Info,
+  IdCard,
+  LayoutList,
+  SearchCheck,
 } from "lucide-react";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -72,9 +75,9 @@ const personaCards: PersonaCard[] = [
   {
     id: "aggregators",
     title: "Aggregators",
-    platform: "Android app",
+    platform: "Farm2Go Android app",
     description:
-      "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
+      "Farmer organisations or cooperatives that organise farmers in groups and connect them to local buyers.",
     icon: Users,
     iconColor: "orange",
     cta: {
@@ -87,9 +90,9 @@ const personaCards: PersonaCard[] = [
   {
     id: "buyers",
     title: "Buyers",
-    platform: "Web app",
+    platform: "Farm2Go web app",
     description:
-      "Traders, schools, or businesses who want to buy produce from farmer groups.",
+      "Traders, local retailers, schools and other institutions who want to buy produce from smallholder farmers.",
     icon: Store,
     iconColor: "blue",
     cta: {
@@ -101,9 +104,9 @@ const personaCards: PersonaCard[] = [
   {
     id: "country-administrators",
     title: "Country Admins",
-    platform: "Web app",
+    platform: "Farm2Go web app",
     description:
-      "Manage approvals, monitor platform activity, and support implementation locally.",
+      "Implementation partners who support adoption, manage platform access, view reports and create agro-advisory content.",
     icon: UserStar,
     iconColor: "green",
     cta: {
@@ -149,24 +152,40 @@ function PersonaCta({ cta }: { cta: PersonaCta }) {
 
 const workflowSteps = [
   {
-    title: "Register farmers and stock",
-    description: "Aggregators record farmer details and available produce.",
-    icon: ClipboardList,
+    title: "Register farmer details",
+    description:
+      "Aggregators use their mobile app to register farmer profiles, farm details, production information and record stock collections.",
+    icon: LayoutList,
   },
   {
     title: "Buyers view produce",
-    description: "Buyers browse what is available in their selected areas.",
+    description:
+      "Buyers use their e-commerce web app to view smallholder farmer produce and create offers.",
     icon: PackageSearch,
   },
   {
-    title: "Send offers",
-    description: "Buyers and aggregators agree on price and quantity.",
+    title: "Negotiate offers",
+    description:
+      "Aggregators and buyers use their apps to agree on the quantity, price, exchange date and location.",
     icon: MessagesSquare,
   },
   {
     title: "Complete exchange",
-    description: "Produce is delivered and transactions are recorded.",
+    description:
+      "The physical meeting where commodites are exchanged for payment are tracked and recorded in the app.",
     icon: ArrowLeftRight,
+  },
+  {
+    title: "Transparent process",
+    description:
+      "Smallholder farmers receive SMS messages to update them whenever there is an activity related to their profile.",
+    icon: SearchCheck,
+  },
+  {
+    title: "Agro-advisory to strenghten capacity",
+    description:
+      "Administrators share content with Aggregators to inform them of adverse weather events and good agricultural practices.",
+    icon: Info,
   },
 ];
 
@@ -225,36 +244,37 @@ function App() {
         <section className="px-10 relative flex min-h-96 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
           <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-6xl">
-            <div className="flex flex-col gap-8 max-w-xl">
-              <h1 className="text-4xl font-bold text-white md:text-5xl">
-                Buy and sell produce with confidence
+            <div className="flex flex-col gap-8 max-w-4xl">
+              <h1 className="text-4xl font-bold text-white md:text-5xl max-w-[66ch]">
+                Farm2Go helps smallholder farmers sell their produce to buyers
               </h1>
-              <p className="text-lg text-white">
-                Farm2Go connects aggregators and buyers to trade produce, track
-                stock, and improve market access.
+              <p className="text-lg text-white max-w-[66ch]">
+                Aggregators support farmers by digitally tracking production and
+                formally connecting them to buyers, facilitating a transparent
+                and fair marketplace.
               </p>
             </div>
           </div>
         </section>
 
         <section className="px-10 py-24 bg-muted">
-          <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
             <h2 className="text-3xl font-bold">Farm2Go for different roles</h2>
             <div className="grid grid-cols-3 gap-5 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {personaCards.map((persona) => (
                 <Card key={persona.id} className="shadow-none">
                   <CardHeader className="flex items-center gap-5">
                     <persona.icon
-                      className={`size-15 rounded-lg p-3.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
+                      className={`size-13 rounded-lg p-2.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
                       aria-hidden="true"
                     />
                     <div className="flex flex-col gap-2">
                       <CardTitle className="text-xl">{persona.title}</CardTitle>
-                      <Badge variant="secondary">{persona.platform}</Badge>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex flex-col gap-8">
+                  <CardContent className="flex flex-col gap-5">
                     <CardDescription>{persona.description}</CardDescription>
+                    <Badge variant="secondary">{persona.platform}</Badge>
                     <PersonaCta cta={persona.cta} />
                   </CardContent>
                 </Card>
@@ -264,14 +284,14 @@ function App() {
         </section>
 
         <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
             <h2 className="text-3xl font-bold">How Farm2Go works</h2>
-            <div className="grid grid-cols-4 gap-5 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
+            <div className="grid grid-cols-3 gap-12 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
                 <Card key={step.title} className="border-none shadow-none py-0">
                   <CardHeader className="p-0 gap-3">
                     <step.icon
-                      className={`size-11 rounded-lg p-2.5 text-blue-600 bg-blue-100 mb-1`}
+                      className={`size-12 rounded-lg p-2.5 text-blue-600 bg-blue-100 mb-1`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-lg">{step.title}</CardTitle>
@@ -284,7 +304,7 @@ function App() {
         </section>
 
         <section className="px-10 py-24 bg-muted">
-          <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
             <h2 className="text-3xl font-bold">
               Trusted across multiple countries
             </h2>
