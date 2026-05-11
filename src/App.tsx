@@ -284,7 +284,7 @@ function App() {
                       <CardTitle className="text-xl">{persona.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex flex-col gap-5">
+                  <CardContent className="flex flex-col gap-6">
                     <CardDescription>{persona.description}</CardDescription>
                     <Badge variant="secondary">{persona.platform}</Badge>
                     <PersonaCta cta={persona.cta} />
