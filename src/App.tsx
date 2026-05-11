@@ -318,7 +318,7 @@ function App() {
         <section className="px-10 py-24 bg-muted">
           <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
             <h2 className="text-3xl font-bold">
-              Trusted across multiple countries
+              Already implemented in … countries and in … different languages
             </h2>
             <div className="flex flex-wrap gap-3">
               {trustStats.map((stat) => (
