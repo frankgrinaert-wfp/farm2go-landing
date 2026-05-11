@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeftRight,
   ClipboardList,
@@ -39,41 +40,112 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-const roleCards = [
+type PersonaCta =
+  | {
+      kind: "google-play";
+      href: string;
+      badgeImageSrc: string;
+      badgeImageAlt: string;
+    }
+  | { kind: "login"; href: string; label: string };
+
+/** Tailwind icon tint: soft background + saturated icon. Add keys here when you need new colors. */
+const PERSONA_ICON_COLOR_CLASSES = {
+  orange: "bg-orange-100 text-orange-600",
+  blue: "bg-blue-100 text-blue-600",
+  green: "bg-green-100 text-green-600",
+} as const;
+
+type PersonaIconColor = keyof typeof PERSONA_ICON_COLOR_CLASSES;
+
+type PersonaCard = {
+  id: string;
+  title: string;
+  platform: string;
+  description: string;
+  icon: LucideIcon;
+  iconColor: PersonaIconColor;
+  cta: PersonaCta;
+};
+
+const personaCards: PersonaCard[] = [
   {
+    id: "aggregators",
     title: "For Aggregators",
-    platformBadge: "Android app",
+    platform: "Android app",
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Users,
-    iconClassName: "bg-orange-100 text-orange-600",
-    ctaLabel: "get it on google play",
-    ctaHref: "https://play.google.com/store/apps/details?id=org.wfp.farm2go",
-    isExternal: true,
+    iconColor: "orange",
+    cta: {
+      kind: "google-play",
+      href: "https://play.google.com/store/apps/details?id=org.wfp.farm2go",
+      badgeImageSrc: "/GetItOnGooglePlay_Badge_Web_color_English.svg",
+      badgeImageAlt: "Get it on Google Play",
+    },
   },
   {
+    id: "buyers",
     title: "For Buyers",
-    platformBadge: "Web app",
+    platform: "Web app",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
     icon: Store,
-    iconClassName: "bg-blue-100 text-blue-600",
-    ctaLabel: "Log in",
-    ctaHref: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
-    isExternal: true,
+    iconColor: "blue",
+    cta: {
+      kind: "login",
+      href: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
+      label: "Log in",
+    },
   },
   {
+    id: "country-administrators",
     title: "For Country Administrators",
-    platformBadge: "Web app",
+    platform: "Web app",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserStar,
-    iconClassName: "bg-green-100 text-green-600",
-    ctaLabel: "Log in",
-    ctaHref: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
-    isExternal: true,
+    iconColor: "green",
+    cta: {
+      kind: "login",
+      href: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
+      label: "Log in",
+    },
   },
 ];
+
+function PersonaCta({ cta }: { cta: PersonaCta }) {
+  const linkProps = {
+    href: cta.href,
+    target: "_blank" as const,
+    rel: "noopener noreferrer" as const,
+  };
+
+  if (cta.kind === "google-play") {
+    return (
+      <a
+        {...linkProps}
+        className="inline-flex w-fit rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        <img
+          src={cta.badgeImageSrc}
+          alt={cta.badgeImageAlt}
+          className="h-10 w-auto"
+          decoding="async"
+        />
+      </a>
+    );
+  }
+
+  return (
+    <Button size="lg" className="text-base w-fit" asChild>
+      <a {...linkProps}>
+        <LogIn className="size-5" aria-hidden="true" />
+        {cta.label}
+      </a>
+    </Button>
+  );
+}
 
 const workflowSteps = [
   {
@@ -169,48 +241,19 @@ function App() {
           <div className="mx-auto w-full max-w-6xl">
             {/* <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2> */}
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
-              {roleCards.map((role) => (
-                <Card key={role.title}>
+              {personaCards.map((persona) => (
+                <Card key={persona.id}>
                   <CardHeader className="flex flex-col gap-4">
-                    <role.icon
-                      className={`size-12 rounded-lg p-2.5 ${role.iconClassName}`}
+                    <persona.icon
+                      className={`size-12 rounded-lg p-2.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
                       aria-hidden="true"
                     />
-                    <CardTitle className="text-xl">{role.title}</CardTitle>
-                    <Badge variant="secondary">{role.platformBadge}</Badge>
+                    <CardTitle className="text-xl">{persona.title}</CardTitle>
+                    <Badge variant="secondary">{persona.platform}</Badge>
                   </CardHeader>
                   <CardContent className="flex flex-col gap-5">
-                    <CardDescription>{role.description}</CardDescription>
-                    {role.title === "For Aggregators" ? (
-                      <a
-                        href={role.ctaHref}
-                        target={role.isExternal ? "_blank" : undefined}
-                        rel={
-                          role.isExternal ? "noopener noreferrer" : undefined
-                        }
-                        className="inline-flex w-fit rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                      >
-                        <img
-                          src="/public/GetItOnGooglePlay_Badge_Web_color_English.svg"
-                          alt="Get it on Google Play"
-                          className="h-10 w-auto"
-                          decoding="async"
-                        />
-                      </a>
-                    ) : (
-                      <Button size="lg" className="text-base w-fit" asChild>
-                        <a
-                          href={role.ctaHref}
-                          target={role.isExternal ? "_blank" : undefined}
-                          rel={
-                            role.isExternal ? "noopener noreferrer" : undefined
-                          }
-                        >
-                          <LogIn className="size-5" aria-hidden="true" />
-                          {role.ctaLabel}
-                        </a>
-                      </Button>
-                    )}
+                    <CardDescription>{persona.description}</CardDescription>
+                    <PersonaCta cta={persona.cta} />
                   </CardContent>
                 </Card>
               ))}
