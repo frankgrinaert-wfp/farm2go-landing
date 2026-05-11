@@ -237,12 +237,12 @@ function App() {
           </div>
         </section>
 
-        <section className="px-10 py-24">
+        <section className="px-10 py-24 bg-muted">
           <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
             <h2 className="text-3xl font-bold">Farm2Go for different roles</h2>
-            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
+            <div className="grid grid-cols-3 gap-5 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {personaCards.map((persona) => (
-                <Card key={persona.id}>
+                <Card key={persona.id} className="shadow-none">
                   <CardHeader className="flex items-center gap-5">
                     <persona.icon
                       className={`size-15 rounded-lg p-3.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
@@ -263,15 +263,15 @@ function App() {
           </div>
         </section>
 
-        <section className="px-10 py-24 bg-muted">
+        <section className="px-10 py-24">
           <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
             <h2 className="text-3xl font-bold">How Farm2Go works</h2>
-            <div className="grid grid-cols-4 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
+            <div className="grid grid-cols-4 gap-5 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
-                <Card key={step.title}>
-                  <CardHeader>
+                <Card key={step.title} className="border-none shadow-none py-0">
+                  <CardHeader className="p-0 gap-3">
                     <step.icon
-                      className={`size-10 rounded-lg p-2 text-blue-600 bg-blue-100 mb-1`}
+                      className={`size-11 rounded-lg p-2.5 text-blue-600 bg-blue-100 mb-1`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-lg">{step.title}</CardTitle>
@@ -283,7 +283,7 @@ function App() {
           </div>
         </section>
 
-        <section className="px-10 py-24">
+        <section className="px-10 py-24 bg-muted">
           <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
             <h2 className="text-3xl font-bold">
               Trusted across multiple countries
