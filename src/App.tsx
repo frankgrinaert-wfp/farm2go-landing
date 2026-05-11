@@ -42,6 +42,7 @@ import {
 const roleCards = [
   {
     title: "For Aggregators",
+    platformBadge: "Android app",
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Users,
@@ -52,6 +53,7 @@ const roleCards = [
   },
   {
     title: "For Buyers",
+    platformBadge: "Web app",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
     icon: Store,
@@ -62,6 +64,7 @@ const roleCards = [
   },
   {
     title: "For Country Administrators",
+    platformBadge: "Web app",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserStar,
@@ -168,12 +171,13 @@ function App() {
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {roleCards.map((role) => (
                 <Card key={role.title}>
-                  <CardHeader>
+                  <CardHeader className="flex flex-col gap-4">
                     <role.icon
-                      className={`size-12 rounded-lg p-2.5 mb-2 ${role.iconClassName}`}
+                      className={`size-12 rounded-lg p-2.5 ${role.iconClassName}`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-xl">{role.title}</CardTitle>
+                    <Badge variant="secondary">{role.platformBadge}</Badge>
                   </CardHeader>
                   <CardContent className="flex flex-col gap-5">
                     <CardDescription>{role.description}</CardDescription>
