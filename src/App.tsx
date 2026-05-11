@@ -243,15 +243,17 @@ function App() {
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {personaCards.map((persona) => (
                 <Card key={persona.id}>
-                  <CardHeader className="flex items-center gap-3">
+                  <CardHeader className="flex items-center gap-5">
                     <persona.icon
-                      className={`size-11 rounded-lg p-2 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
+                      className={`size-15 rounded-lg p-3.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
                       aria-hidden="true"
                     />
-                    <CardTitle className="text-xl">{persona.title}</CardTitle>
+                    <div className="flex flex-col gap-2">
+                      <CardTitle className="text-xl">{persona.title}</CardTitle>
+                      <Badge variant="secondary">{persona.platform}</Badge>
+                    </div>
                   </CardHeader>
-                  <CardContent className="flex flex-col gap-5">
-                    <Badge variant="secondary">{persona.platform}</Badge>
+                  <CardContent className="flex flex-col gap-8">
                     <CardDescription>{persona.description}</CardDescription>
                     <PersonaCta cta={persona.cta} />
                   </CardContent>
