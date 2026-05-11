@@ -331,8 +331,12 @@ function App() {
         </section>
       </main>
 
-      <footer className="bg-wfp-navy p-10">
-        <div className="mx-auto flex w-full max-w-6xl items-center">
+      <footer className="bg-wfp-navy p-12 text-sm text-white">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+          <div className="flex flex-col gap-2">
+            <h3 className="font-semibold text-base text-blue-400">Support</h3>
+            <p>global.techsupport@wfp.org</p>
+          </div>
           <a
             href="https://www.wfp.org"
             target="_blank"
@@ -342,7 +346,7 @@ function App() {
             <img
               src="/logos/white/wfp-logo-en.svg"
               alt="World Food Programme"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
               decoding="async"
             />
           </a>
