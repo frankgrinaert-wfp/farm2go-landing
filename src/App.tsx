@@ -11,6 +11,7 @@ import {
   Info,
   LayoutList,
   SearchCheck,
+  Lightbulb,
 } from "lucide-react";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -195,7 +196,7 @@ const workflowSteps = [
     title: "Agro-advisory to strenghten capacity",
     description:
       "Administrators share content with Aggregators to inform them of adverse weather events and good agricultural practices.",
-    icon: Info,
+    icon: Lightbulb,
   },
 ];
 
@@ -275,7 +276,7 @@ function App() {
                 <Card key={persona.id} className="shadow-none">
                   <CardHeader className="flex items-center gap-5">
                     <persona.icon
-                      className="size-13 rounded-lg p-2.5"
+                      className="size-12 rounded-lg p-2.5"
                       style={personaIconTintStyle(persona.iconColor)}
                       aria-hidden="true"
                     />
@@ -300,9 +301,9 @@ function App() {
             <div className="grid grid-cols-3 gap-12 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
                 <Card key={step.title} className="border-none shadow-none py-0">
-                  <CardHeader className="p-0 gap-3">
+                  <CardHeader className="p-0 gap-2.5">
                     <step.icon
-                      className={`size-12 rounded-lg p-2.5 text-blue-600 bg-blue-100 mb-1`}
+                      className={`size-11 rounded-lg p-2.5 text-blue-600 bg-blue-100 mb-1`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-lg">{step.title}</CardTitle>
