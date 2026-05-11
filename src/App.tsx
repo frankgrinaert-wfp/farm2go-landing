@@ -71,7 +71,7 @@ type PersonaCard = {
 const personaCards: PersonaCard[] = [
   {
     id: "aggregators",
-    title: "For Aggregators",
+    title: "Aggregators",
     platform: "Android app",
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
@@ -86,7 +86,7 @@ const personaCards: PersonaCard[] = [
   },
   {
     id: "buyers",
-    title: "For Buyers",
+    title: "Buyers",
     platform: "Web app",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
@@ -100,7 +100,7 @@ const personaCards: PersonaCard[] = [
   },
   {
     id: "country-administrators",
-    title: "For Country Administrators",
+    title: "Country Admins",
     platform: "Web app",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
@@ -238,20 +238,20 @@ function App() {
         </section>
 
         <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-6xl">
-            {/* <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2> */}
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
+            <h2 className="text-3xl font-bold">Farm2Go for different roles</h2>
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {personaCards.map((persona) => (
                 <Card key={persona.id}>
-                  <CardHeader className="flex flex-col gap-4">
+                  <CardHeader className="flex items-center gap-3">
                     <persona.icon
-                      className={`size-12 rounded-lg p-2.5 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
+                      className={`size-11 rounded-lg p-2 ${PERSONA_ICON_COLOR_CLASSES[persona.iconColor]}`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-xl">{persona.title}</CardTitle>
-                    <Badge variant="secondary">{persona.platform}</Badge>
                   </CardHeader>
                   <CardContent className="flex flex-col gap-5">
+                    <Badge variant="secondary">{persona.platform}</Badge>
                     <CardDescription>{persona.description}</CardDescription>
                     <PersonaCta cta={persona.cta} />
                   </CardContent>
@@ -262,8 +262,8 @@ function App() {
         </section>
 
         <section className="px-10 py-24 bg-muted">
-          <div className="mx-auto w-full max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold">How Farm2Go works</h2>
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
+            <h2 className="text-3xl font-bold">How Farm2Go works</h2>
             <div className="grid grid-cols-4 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
                 <Card key={step.title}>
@@ -282,8 +282,8 @@ function App() {
         </section>
 
         <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-10">
+            <h2 className="text-3xl font-bold">
               Trusted across multiple countries
             </h2>
             <div className="flex flex-wrap gap-3">
