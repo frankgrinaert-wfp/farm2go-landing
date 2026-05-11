@@ -11,18 +11,13 @@ import {
   Info,
 } from "lucide-react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -46,25 +41,34 @@ import {
 
 const roleCards = [
   {
-    title: "Aggregators",
+    title: "For Aggregators",
     description:
       "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
     icon: Users,
     iconClassName: "bg-orange-100 text-orange-600",
+    ctaLabel: "get it on google play",
+    ctaHref: "https://play.google.com/store/apps/details?id=org.wfp.farm2go",
+    isExternal: true,
   },
   {
-    title: "Buyers",
+    title: "For Buyers",
     description:
       "Traders, schools, or businesses who want to buy produce from farmer groups.",
     icon: Store,
     iconClassName: "bg-blue-100 text-blue-600",
+    ctaLabel: "Log in",
+    ctaHref: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
+    isExternal: true,
   },
   {
-    title: "Country administrators",
+    title: "For Country Administrators",
     description:
       "Manage approvals, monitor platform activity, and support implementation locally.",
     icon: UserStar,
     iconClassName: "bg-green-100 text-green-600",
+    ctaLabel: "Log in",
+    ctaHref: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
+    isExternal: true,
   },
 ];
 
@@ -143,7 +147,7 @@ function App() {
       </header>
 
       <main>
-        <section className="px-10 relative flex min-h-120 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
+        <section className="px-10 relative flex min-h-96 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
           <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-6xl">
             <div className="flex flex-col gap-8 max-w-xl">
@@ -154,46 +158,56 @@ function App() {
                 Farm2Go connects aggregators and buyers to trade produce, track
                 stock, and improve market access.
               </p>
-              <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
-                <Button size="lg" className="text-base h-12 px-5!" asChild>
-                  <a
-                    href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <LogIn className="size-5" aria-hidden="true" />
-                    Log in
-                  </a>
-                </Button>
-                {/*<Button
-                  size="lg"
-                  variant="outline"
-                  className="text-base"
-                  onClick={() => setIsRequestOpen(true)}
-                >
-                  Request access
-                </Button>*/}
-              </div>
             </div>
           </div>
         </section>
 
         <section className="px-10 py-24">
           <div className="mx-auto w-full max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2>
+            {/* <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2> */}
             <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {roleCards.map((role) => (
                 <Card key={role.title}>
                   <CardHeader>
                     <role.icon
-                      className={`size-14 rounded-lg p-3 mb-2 ${role.iconClassName}`}
+                      className={`size-12 rounded-lg p-2.5 mb-2 ${role.iconClassName}`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-xl">{role.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {role.description}
-                    </CardDescription>
                   </CardHeader>
+                  <CardContent className="flex flex-col gap-5">
+                    <CardDescription>{role.description}</CardDescription>
+                    {role.title === "For Aggregators" ? (
+                      <a
+                        href={role.ctaHref}
+                        target={role.isExternal ? "_blank" : undefined}
+                        rel={
+                          role.isExternal ? "noopener noreferrer" : undefined
+                        }
+                        className="inline-flex w-fit rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                      >
+                        <img
+                          src="/public/GetItOnGooglePlay_Badge_Web_color_English.svg"
+                          alt="Get it on Google Play"
+                          className="h-10 w-auto"
+                          decoding="async"
+                        />
+                      </a>
+                    ) : (
+                      <Button size="lg" className="text-base w-fit" asChild>
+                        <a
+                          href={role.ctaHref}
+                          target={role.isExternal ? "_blank" : undefined}
+                          rel={
+                            role.isExternal ? "noopener noreferrer" : undefined
+                          }
+                        >
+                          <LogIn className="size-5" aria-hidden="true" />
+                          {role.ctaLabel}
+                        </a>
+                      </Button>
+                    )}
+                  </CardContent>
                 </Card>
               ))}
             </div>
