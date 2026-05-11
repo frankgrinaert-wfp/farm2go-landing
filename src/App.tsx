@@ -138,9 +138,9 @@ function PersonaCta({ cta }: { cta: PersonaCta }) {
   }
 
   return (
-    <Button size="lg" className="text-base w-fit" asChild>
+    <Button size="lg" className=" w-fit" asChild>
       <a {...linkProps}>
-        <LogIn className="size-5" aria-hidden="true" />
+        <LogIn aria-hidden="true" />
         {cta.label}
       </a>
     </Button>
