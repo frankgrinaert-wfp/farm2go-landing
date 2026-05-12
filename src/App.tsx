@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeftRight,
-  ClipboardList,
   MessagesSquare,
   LogIn,
   PackageSearch,
@@ -9,20 +9,18 @@ import {
   UserStar,
   Users,
   Info,
+  LayoutList,
+  SearchCheck,
+  Lightbulb,
 } from "lucide-react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -44,50 +42,161 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-const roleCards = [
+type PersonaCta =
+  | {
+      kind: "google-play";
+      href: string;
+      badgeImageSrc: string;
+      badgeImageAlt: string;
+    }
+  | { kind: "login"; href: string; label: string };
+
+/**
+ * Palette names that have `--{name}-100` and `--{name}-600` in `src/index.css` (:root).
+ * Icon tint always uses those two steps for background and foreground.
+ */
+type PersonaIconTintColor =
+  | "blue"
+  | "aqua"
+  | "green"
+  | "ivory"
+  | "brown"
+  | "orange"
+  | "red"
+  | "purple";
+
+function personaIconTintStyle(color: PersonaIconTintColor): CSSProperties {
+  return {
+    backgroundColor: `var(--${color}-100)`,
+    color: `var(--${color}-600)`,
+  };
+}
+
+type PersonaCard = {
+  id: string;
+  title: string;
+  platform: string;
+  description: string;
+  icon: LucideIcon;
+  iconColor: PersonaIconTintColor;
+  cta: PersonaCta;
+};
+
+const personaCards: PersonaCard[] = [
   {
+    id: "aggregators",
     title: "Aggregators",
+    platform: "Farm2Go Android app",
     description:
-      "Farmer groups or cooperatives who collect produce from farmers and sell to buyers.",
+      "Farmer organisations or cooperatives that organise farmers in groups and connect them to local buyers.",
     icon: Users,
-    iconClassName: "bg-orange-100 text-orange-600",
+    iconColor: "orange",
+    cta: {
+      kind: "google-play",
+      href: "https://play.google.com/store/apps/details?id=org.wfp.farm2go",
+      badgeImageSrc: "/GetItOnGooglePlay_Badge_Web_color_English.svg",
+      badgeImageAlt: "Get it on Google Play",
+    },
   },
   {
+    id: "buyers",
     title: "Buyers",
+    platform: "Farm2Go web app",
     description:
-      "Traders, schools, or businesses who want to buy produce from farmer groups.",
+      "Traders, local retailers, schools and other institutions who want to buy produce from smallholder farmers.",
     icon: Store,
-    iconClassName: "bg-blue-100 text-blue-600",
+    iconColor: "green",
+    cta: {
+      kind: "login",
+      href: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
+      label: "Log in",
+    },
   },
   {
-    title: "Country administrators",
+    id: "country-administrators",
+    title: "Country Admins",
+    platform: "Farm2Go web app",
     description:
-      "Manage approvals, monitor platform activity, and support implementation locally.",
+      "Implementation partners who support adoption, manage platform access, view reports and create agro-advisory content.",
     icon: UserStar,
-    iconClassName: "bg-green-100 text-green-600",
+    iconColor: "blue",
+    cta: {
+      kind: "login",
+      href: "https://ciam.auth.wfp.org/authenticationendpoint/login.do",
+      label: "Log in",
+    },
   },
 ];
 
+function PersonaCta({ cta }: { cta: PersonaCta }) {
+  const linkProps = {
+    href: cta.href,
+    target: "_blank" as const,
+    rel: "noopener noreferrer" as const,
+  };
+
+  if (cta.kind === "google-play") {
+    return (
+      <a
+        {...linkProps}
+        className="inline-flex w-fit rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        <img
+          src={cta.badgeImageSrc}
+          alt={cta.badgeImageAlt}
+          className="h-10 w-auto"
+          decoding="async"
+        />
+      </a>
+    );
+  }
+
+  return (
+    <Button size="lg" className=" w-fit" asChild>
+      <a {...linkProps}>
+        <LogIn aria-hidden="true" />
+        {cta.label}
+      </a>
+    </Button>
+  );
+}
+
 const workflowSteps = [
   {
-    title: "Register farmers and stock",
-    description: "Aggregators record farmer details and available produce.",
-    icon: ClipboardList,
+    title: "Register farmer details",
+    description:
+      "Aggregators use their mobile app to register farmer profiles, farm details, production information and record stock collections.",
+    icon: LayoutList,
   },
   {
     title: "Buyers view produce",
-    description: "Buyers browse what is available in their selected areas.",
+    description:
+      "Buyers use their e-commerce web app to view smallholder farmer produce and create offers.",
     icon: PackageSearch,
   },
   {
-    title: "Send offers",
-    description: "Buyers and aggregators agree on price and quantity.",
+    title: "Negotiate offers",
+    description:
+      "Aggregators and buyers use their apps to agree on the quantity, price, exchange date and location.",
     icon: MessagesSquare,
   },
   {
     title: "Complete exchange",
-    description: "Produce is delivered and transactions are recorded.",
+    description:
+      "The physical meeting where commodites are exchanged for payment are tracked and recorded in the app.",
     icon: ArrowLeftRight,
+  },
+  {
+    title: "Transparent process",
+    description:
+      "Smallholder farmers receive SMS messages to update them whenever there is an activity related to their profile.",
+    icon: SearchCheck,
+  },
+  {
+    title: "Agro-advisory to strenghten capacity",
+    description:
+      "Administrators share content with Aggregators to inform them of adverse weather events and good agricultural practices.",
+    icon: Lightbulb,
   },
 ];
 
@@ -143,72 +252,58 @@ function App() {
       </header>
 
       <main>
-        <section className="px-10 relative flex min-h-120 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
+        <section className="px-10 relative flex min-h-96 items-center bg-[url('https://miro.medium.com/v2/resize:fit:1400/0*kO9nPbo7uZXR3L85.jpeg')] bg-cover bg-center bg-no-repeat py-24 max-[720px]:min-h-[28rem] max-[720px]:py-12">
           <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-6xl">
-            <div className="flex flex-col gap-8 max-w-xl">
-              <h1 className="text-4xl font-bold text-white md:text-5xl">
-                Buy and sell produce with confidence
+            <div className="flex flex-col gap-8 max-w-4xl">
+              <h1 className="text-4xl font-bold text-white md:text-5xl max-w-[66ch]">
+                Farm2Go helps smallholder farmers sell their produce to buyers
               </h1>
-              <p className="text-lg text-white">
-                Farm2Go connects aggregators and buyers to trade produce, track
-                stock, and improve market access.
+              <p className="text-lg text-white max-w-[66ch]">
+                Aggregators support farmers by digitally tracking production and
+                formally connecting them to buyers, facilitating a transparent
+                and fair marketplace.
               </p>
-              <div className="flex gap-3 max-[720px]:flex-col max-[720px]:items-stretch">
-                <Button size="lg" className="text-base h-12 px-5!" asChild>
-                  <a
-                    href="https://ciam.auth.wfp.org/authenticationendpoint/login.do"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <LogIn className="size-5" aria-hidden="true" />
-                    Log in
-                  </a>
-                </Button>
-                {/*<Button
-                  size="lg"
-                  variant="outline"
-                  className="text-base"
-                  onClick={() => setIsRequestOpen(true)}
-                >
-                  Request access
-                </Button>*/}
-              </div>
             </div>
           </div>
         </section>
 
-        <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold">Who Farm2Go is for</h2>
-            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
-              {roleCards.map((role) => (
-                <Card key={role.title}>
-                  <CardHeader>
-                    <role.icon
-                      className={`size-14 rounded-lg p-3 mb-2 ${role.iconClassName}`}
+        <section className="px-10 py-24 bg-muted">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
+            <h2 className="text-3xl font-bold">Farm2Go for different roles</h2>
+            <div className="grid grid-cols-3 gap-5 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
+              {personaCards.map((persona) => (
+                <Card key={persona.id} className="shadow-none">
+                  <CardHeader className="flex items-center gap-5">
+                    <persona.icon
+                      className="size-12 rounded-lg p-2.5"
+                      style={personaIconTintStyle(persona.iconColor)}
                       aria-hidden="true"
                     />
-                    <CardTitle className="text-xl">{role.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {role.description}
-                    </CardDescription>
+                    <div className="flex flex-col gap-2">
+                      <CardTitle className="text-xl">{persona.title}</CardTitle>
+                    </div>
                   </CardHeader>
+                  <CardContent className="flex flex-col gap-6">
+                    <CardDescription>{persona.description}</CardDescription>
+                    <Badge variant="secondary">{persona.platform}</Badge>
+                    <PersonaCta cta={persona.cta} />
+                  </CardContent>
                 </Card>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="px-10 py-24 bg-muted">
-          <div className="mx-auto w-full max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold">How Farm2Go works</h2>
-            <div className="grid grid-cols-4 gap-4 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
+        <section className="px-10 py-24">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
+            <h2 className="text-3xl font-bold">How Farm2Go works</h2>
+            <div className="grid grid-cols-3 gap-12 max-[980px]:grid-cols-2 max-[720px]:grid-cols-1">
               {workflowSteps.map((step) => (
-                <Card key={step.title}>
-                  <CardHeader>
+                <Card key={step.title} className="border-none shadow-none py-0">
+                  <CardHeader className="p-0 gap-2.5">
                     <step.icon
-                      className={`size-10 rounded-lg p-2 text-blue-600 bg-blue-100 mb-1`}
+                      className={`size-11 rounded-lg p-2.5 text-blue-600 bg-blue-100 mb-1`}
                       aria-hidden="true"
                     />
                     <CardTitle className="text-lg">{step.title}</CardTitle>
@@ -220,10 +315,10 @@ function App() {
           </div>
         </section>
 
-        <section className="px-10 py-24">
-          <div className="mx-auto w-full max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold">
-              Trusted across multiple countries
+        <section className="px-10 py-24 bg-muted">
+          <div className="mx-auto w-full max-w-6xl flex flex-col gap-12">
+            <h2 className="text-3xl font-bold">
+              Already implemented in … countries and in … different languages
             </h2>
             <div className="flex flex-wrap gap-3">
               {trustStats.map((stat) => (
@@ -236,8 +331,12 @@ function App() {
         </section>
       </main>
 
-      <footer className="bg-wfp-navy p-10">
-        <div className="mx-auto flex w-full max-w-6xl items-center">
+      <footer className="bg-wfp-navy p-12 text-sm text-white">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+          <div className="flex flex-col gap-2">
+            <h3 className="font-semibold text-base text-blue-400">Support</h3>
+            <p>global.techsupport@wfp.org</p>
+          </div>
           <a
             href="https://www.wfp.org"
             target="_blank"
@@ -247,7 +346,7 @@ function App() {
             <img
               src="/logos/white/wfp-logo-en.svg"
               alt="World Food Programme"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
               decoding="async"
             />
           </a>
